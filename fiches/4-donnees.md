@@ -9,8 +9,8 @@ Vous êtes le lien entre les fichiers et le programme : lire les JSON, vérifier
 Les imports sont déjà écrits en haut du fichier : `readFile` et `writeFile` viennent de `node:fs/promises`, `join` de `node:path`.
 
 ## 1. `lireJson(chemin)` — moyen
-
-**Reçoit :** un chemin de fichier. **Renvoie :** une **promesse** du contenu du fichier, converti avec `JSON.parse`.
+un chemin de fichier
+**Reçoit :** . **Renvoie :** une **promesse** du contenu du fichier, converti avec `JSON.parse`.
 
 Si la lecture ou la conversion échoue, lancez une erreur dont le message contient `Impossible de lire` et le chemin, **en gardant l'erreur d'origine** :
 
@@ -25,7 +25,7 @@ throw new Error(`Impossible de lire ${chemin}`, { cause: erreur });
 3. `return JSON.parse(texte);`
 4. Entourez ces deux lignes d'un `try { ... } catch (erreur) { ... }`.
 </details>
-
+ 
 ## 2. `chargerDonnees(dossier)` — moyen
 
 **Reçoit :** un dossier, par exemple `'./donnees'`. **Renvoie :** une promesse de l'objet :
@@ -99,12 +99,10 @@ Le premier relevé est accepté ; les deux suivants affichent un message `Erreur
 Renommez un instant `donnees/recoltes.json`, lancez `node app.js rapport` et lisez le message : c'est votre `try` / `catch` qui l'a produit. Remettez ensuite le bon nom.
 
 ## Pour aller plus loin
-
 - Ajoutez un test : `creerReleve('P07', '100', '29', ...)` est accepté (100 est une limite valide).
 - Dans `chargerDonnees`, remplacez `Promise.all` par quatre `await` à la suite. Le résultat change-t-il ? Qu'est-ce qui change ?
 
 ## Préparez votre présentation
-
 - Que renvoie une fonction `async` ? Que se passe-t-il si on oublie `await` devant `readFile` ?
 - Pourquoi garder l'erreur d'origine dans `cause` ?
 - Pourquoi `Promise.all` plutôt que quatre lectures l'une après l'autre ?

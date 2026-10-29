@@ -3,10 +3,14 @@
 
 // Renvoie une ligne de texte qui décrit la parcelle.
 // Exemple : 'P01 | Awa Diallo | Soubré | cacao | 3 ha'
+const parcelles = [
+  { id: 'A1', producteur: 'Ama', localite: 'Man', culture: 'cacao', surface: 2 },
+  { id: 'A2', producteur: 'Moussa', localite: 'Odienné', culture: 'riz', surface: 1.5 },
+  { id: 'A3', producteur: 'Nina', localite: 'Man', culture: 'cacao', surface: 0.5 },
+];
+
 export function formaterParcelle(parcelle) {
-  throw new Error(
-    "TODO Membre 1 : coder formaterParcelle dans src/parcelles.js",
-  );
+ return `${parcelle.id} | ${parcelle.producteur} | ${parcelle.localite} | ${parcelle.culture} | ${parcelle.surface} ha`;
 }
 
 // Renvoie la parcelle dont l'id est demandé, ou undefined si elle n'existe pas.
@@ -14,7 +18,7 @@ export function trouverParcelle(parcelles, id) {
   throw new Error(
     "TODO Membre 1 : coder trouverParcelle dans src/parcelles.js",
   );
-}
+} 
 
 // Renvoie un nouveau tableau avec seulement les parcelles de cette culture.
 export function parcellesParCulture(parcelles, culture) {
