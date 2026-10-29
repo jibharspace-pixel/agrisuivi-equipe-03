@@ -25,7 +25,7 @@ throw new Error(`Impossible de lire ${chemin}`, { cause: erreur });
 3. `return JSON.parse(texte);`
 4. Entourez ces deux lignes d'un `try { ... } catch (erreur) { ... }`.
 </details>
-
+ 
 ## 2. `chargerDonnees(dossier)` — moyen
 
 **Reçoit :** un dossier, par exemple `'./donnees'`. **Renvoie :** une promesse de l'objet :

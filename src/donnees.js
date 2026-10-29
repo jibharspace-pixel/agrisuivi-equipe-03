@@ -6,8 +6,14 @@ import { join } from "node:path";
 
 // Lit un fichier JSON et renvoie son contenu converti en valeur JavaScript.
 // En cas de problème, lance une erreur claire qui garde l'erreur d'origine comme cause.
+
 export async function lireJson(chemin) {
-  throw new Error("TODO Membre 4 : coder lireJson dans src/donnees.js");
+  try{ 
+    const texte = await readFile(chemin, 'utf8');
+    return JSON.parse(texte);
+  } catch(erreur) { 
+    throw new Error(`Impossible de lire ${chemin}`, { cause: erreur });
+  }
 }
 
 // Lit les quatre fichiers EN MÊME TEMPS avec Promise.all.
@@ -15,6 +21,8 @@ export async function lireJson(chemin) {
 export async function chargerDonnees(dossier) {
   throw new Error("TODO Membre 4 : coder chargerDonnees dans src/donnees.js");
 }
+
+
 
 // Vérifie les textes tapés dans le terminal et renvoie un nouveau relevé.
 // Exemple : creerReleve('p07', '64', '29', '2026-10-29')
