@@ -21,7 +21,7 @@ export function parcellesParCulture(parcelles, culture) {
 
 // Renvoie la somme des surfaces (en hectares). Liste vide : 0.
 export function surfaceTotale(parcelles) {
-
+   return parcelles.reduce((total, parcelle) => total + parcelle.surface, 0);
 }
   
 
