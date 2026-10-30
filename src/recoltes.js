@@ -4,35 +4,56 @@
 // Renvoie le total des kilos récoltés sur une parcelle. Aucune récolte : 0.
 export function totalRecolte(recoltes, idParcelle) {
   return recoltes
-    .filter((r) => r.parcelle === idParcelle)
-    .reduce((somme, r) => somme + r.kg, 0);
+    .filter(function (r) {
+      return r.parcelle === idParcelle;
+    })
+    .reduce(function (somme, r) {
+      return somme + r.kg;
+    }, 0);
 }
 
 // Renvoie le rendement en kg par hectare, arrondi à l'entier le plus proche.
 // Une surface nulle ou négative est une erreur : on lance une RangeError.
 export function rendement(kg, surface) {
-if (surface <= 0) {throw new RangeError('La surface doit être supérieure à 0')};
-return Math.round(kg/surface);
+  if (surface <= 0) {
+    throw new RangeError('La surface doit être supérieure à 0');
+  }
+  return Math.round(kg / surface);
 }
-
 
 // Renvoie le revenu estimé en FCFA.
 export function revenu(kg, prixKg) {
-  return kg*prixKg ;
+  return kg * prixKg;
 }
-
 
 // Renvoie une ligne de bilan par parcelle, dans le même ordre que parcelles.
 // Chaque ligne : { id, producteur, culture, kg, rendement, revenu }
 export function bilanRecoltes(parcelles, recoltes, cultures) {
-  throw new Error("TODO Membre 3 : coder bilanRecoltes dans src/recoltes.js");
+  return parcelles.map(function (parcelle) {
+    const culture = cultures.find(function (c) {
+      return c.code === parcelle.culture;
+    });
+    const kg = totalRecolte(recoltes, parcelle.id);
+    const rend = rendement(kg, parcelle.surface);
+    const rev = revenu(kg, culture.prixKg);
+    return {
+      id: parcelle.id,
+      producteur: parcelle.producteur,
+      culture: parcelle.culture,
+      kg: kg,
+      rendement: rend,
+      revenu: rev,
+    };
+  });
 }
-
 
 // Renvoie une COPIE du bilan, triée du plus grand revenu au plus petit.
 // Le tableau reçu ne doit pas changer d'ordre.
 export function classerParRevenu(bilan) {
-  throw new Error(
-    "TODO Membre 3 : coder classerParRevenu dans src/recoltes.js",
-  );
+  const copie = [...bilan];
+
+  copie.sort(function (a, b) {
+    return b.revenu - a.revenu;
+  });
+  return copie;
 }
