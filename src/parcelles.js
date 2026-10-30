@@ -15,18 +15,33 @@ export function trouverParcelle(parcelles, id) {
 
 // Renvoie un nouveau tableau avec seulement les parcelles de cette culture.
 export function parcellesParCulture(parcelles, culture) {
-  
+  return parcelles.filter((parcelles) => parcelles.culture === culture)
 }
 
 
 // Renvoie la somme des surfaces (en hectares). Liste vide : 0.
 export function surfaceTotale(parcelles) {
-
+   return parcelles.reduce((total, parcelle) => total + parcelle.surface, 0);
 }
   
 
 // Renvoie un objet : pour chaque culture, le nombre de parcelles et leur surface.
 // Exemple : { cacao: { nombre: 2, surface: 5 }, riz: { nombre: 1, surface: 1 } }
 export function resumeParCulture(parcelles) {
+const resume = {};
 
+  for (const parcelle of parcelles) {
+    const culture = parcelle.culture;
+
+    if (resume[parcelle.culture] === undefined) {
+     resume[parcelle.culture] = { nombre: 0, surface: 0 };
+    }
+
+    resume[parcelle.culture].nombre += 1;
+    resume[parcelle.culture].surface += parcelle.surface;
+
+     }
+
+  return resume;
 }
+
