@@ -67,6 +67,7 @@ Si `surface` est inférieure ou égale à 0, lancez une erreur : `throw new Rang
 4. N'oubliez pas le `return` de l'objet.
 </details>
 
+
 ## 5. `classerParRevenu(bilan)` — moyen
 
 **Renvoie :** une **copie** du bilan, triée du plus grand revenu au plus petit. Le tableau reçu ne doit **pas** changer.
